@@ -3,38 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Vibes Apps</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Vibes Pages Gallery</title>
   <style>
-    body { background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%); }
-    .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
-    .glow { box-shadow: 0 0 30px rgba(139, 92, 246, 0.3); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #e8e8f0;
+      padding: 2rem;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 3rem; }
+    h1 {
+      font-size: 3rem;
+      background: linear-gradient(90deg, #a855f7, #ec4899, #22d3d8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle { color: rgba(255,255,255,0.5); }
+    .projects { display: flex; flex-direction: column; gap: 1.5rem; }
+    .project {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    .project:hover {
+      border-color: rgba(168, 85, 247, 0.5);
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
+      transform: translateY(-3px);
+    }
+    .project-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+    .project-icon { font-size: 2.5rem; }
+    .project-title { font-size: 1.5rem; font-weight: 600; color: #fff; }
+    .project-count {
+      background: rgba(168, 85, 247, 0.3);
+      color: #a855f7;
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .project-desc { color: rgba(255,255,255,0.7); margin-bottom: 1rem; line-height: 1.5; }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(34, 211, 216, 0.2));
+      border: 1px solid rgba(168, 85, 247, 0.5);
+      border-radius: 0.5rem;
+      color: #a855f7;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .project-link:hover {
+      background: rgba(168, 85, 247, 0.4);
+      transform: translateX(5px);
+    }
+    footer { text-align: center; margin-top: 3rem; color: rgba(255,255,255,0.4); font-size: 0.9rem; }
+    footer a { color: #a855f7; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
-<body class="min-h-screen text-white p-8">
-  <div class="max-w-4xl mx-auto">
-    <header class="text-center mb-12">
-      <h1 class="text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent mb-4">
-        My Vibes Apps
-      </h1>
-      <p class="text-gray-400">Generated with Vibes DIY</p>
+<body>
+  <div class="container">
+    <header>
+      <h1>Vibes Pages Gallery</h1>
+      <p class="subtitle">Apps generated with Vibes DIY</p>
     </header>
 
-    <div class="glass rounded-2xl p-8 glow">
-      <h2 class="text-2xl font-semibold mb-6 text-purple-300">Getting Started</h2>
-      <p class="text-gray-300 mb-4">
-        This is your Vibes apps gallery. When you generate apps with <code class="bg-white/10 px-2 py-1 rounded">/vibes:vibes</code>
-        or <code class="bg-white/10 px-2 py-1 rounded">/vibes:riff</code>, they'll appear here.
-      </p>
-      <div class="mt-8 p-4 bg-white/5 rounded-lg border border-white/10">
-        <p class="text-sm text-gray-400">
-          No apps yet. Generate your first app to see it here!
+    <div class="projects">
+      <div class="project">
+        <div class="project-header">
+          <span class="project-icon">🦭🎅</span>
+          <span class="project-title">Christmas Walrus Vibes</span>
+          <span class="project-count">25 apps</span>
+        </div>
+        <p class="project-desc">
+          25 festive Christmas-themed apps, each featuring a uniquely named walrus character wearing a Santa hat.
+          From Barnaby Tusksworth III's Secret Wish Registry to Björk's Existential Christmas Haikus.
         </p>
+        <a href="christmas-walrus-vibes/" class="project-link">
+          Open Gallery →
+        </a>
       </div>
     </div>
 
-    <footer class="text-center mt-12 text-gray-500 text-sm">
-      <p>Powered by <a href="https://vibes.diy" class="text-purple-400 hover:underline">Vibes DIY</a></p>
+    <footer>
+      <p>Powered by <a href="https://vibes.diy">Vibes DIY</a></p>
     </footer>
   </div>
 </body>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christmas Walrus Vibes - 25 Festive Apps</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a0a20 50%, #0a1a1a 100%);
+      min-height: 100vh;
+      color: #e8e8f0;
+      overflow-x: hidden;
+    }
+
+    .snowflakes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -20px;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 1rem;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(139, 0, 0, 0.2) 0%, rgba(0, 100, 0, 0.2) 100%);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .walrus-hero {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffe66d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(78, 205, 196, 0.5);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(78, 205, 196, 0.1);
+    }
+
+    .rank-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .rank-1 { background: linear-gradient(135deg, #ffd700, #ffaa00); color: #000; }
+    .rank-2 { background: linear-gradient(135deg, #c0c0c0, #a0a0a0); color: #000; }
+    .rank-3 { background: linear-gradient(135deg, #cd7f32, #a56028); color: #fff; }
+    .rank-other { background: rgba(78, 205, 196, 0.3); color: #4ecdc4; }
+
+    .walrus-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .app-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+
+    .walrus-name {
+      font-size: 0.85rem;
+      color: #4ecdc4;
+      margin-bottom: 0.75rem;
+    }
+
+    .pitch {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .score-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .score-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+      transition: width 0.5s ease;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .score {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .launch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, rgba(78, 205, 196, 0.3), rgba(78, 205, 196, 0.1));
+      border: 1px solid rgba(78, 205, 196, 0.5);
+      border-radius: 0.5rem;
+      color: #4ecdc4;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .launch-btn:hover {
+      background: rgba(78, 205, 196, 0.4);
+      transform: translateX(5px);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 2rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 1.8rem; }
+      .walrus-hero { font-size: 3rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="snowflakes" id="snowflakes"></div>
+
+  <div class="container">
+    <header>
+      <div class="walrus-hero">🦭🎅</div>
+      <h1>Christmas Walrus Vibes</h1>
+      <p class="subtitle">25 Festive Apps featuring uniquely named Santa-hat-wearing walruses</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <div class="rank-badge rank-1">1</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Barnaby's Secret Wish Registry</div>
+        <div class="walrus-name">Barnaby Tusksworth III, Esq.</div>
+        <div class="pitch">Submit your strangest Christmas wishes to a distinguished walrus gentleman who operates a clandestine holiday fulfillment bureau</div>
+        <div class="score-bar"><div class="score-fill" style="width: 92%"></div></div>
+        <div class="card-footer">
+          <span class="score">46/50</span>
+          <a href="riff-9/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-2">2</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Björk's Existential Christmas Haikus</div>
+        <div class="walrus-name">Björk the Philosophical Walrus</div>
+        <div class="pitch">A philosophical walrus channels holiday wisdom through unconventional haikus</div>
+        <div class="score-bar"><div class="score-fill" style="width: 90%"></div></div>
+        <div class="card-footer">
+          <span class="score">45/50</span>
+          <a href="riff-25/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-3">3</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Winslow's Winter Prophecies</div>
+        <div class="walrus-name">Winslow the Wise Walrus</div>
+        <div class="pitch">Seek mystical Christmas wisdom from an arctic oracle who delivers cryptic holiday fortunes</div>
+        <div class="score-bar"><div class="score-fill" style="width: 88%"></div></div>
+        <div class="card-footer">
+          <span class="score">44/50</span>
+          <a href="riff-10/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">4</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Cornelius's Cosmic Wish Emporium</div>
+        <div class="walrus-name">Cornelius Tusksgiving McFlipperton III</div>
+        <div class="pitch">Submit your holiday wishes to an interdimensional walrus sage</div>
+        <div class="score-bar"><div class="score-fill" style="width: 86%"></div></div>
+        <div class="card-footer">
+          <span class="score">43/50</span>
+          <a href="riff-21/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">5</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Wadsworth's Compliment Dispensary</div>
+        <div class="walrus-name">Wadsworth (Distinguished Monocled)</div>
+        <div class="pitch">Feed a distinguished walrus fish and receive elaborate holiday compliments</div>
+        <div class="score-bar"><div class="score-fill" style="width: 84%"></div></div>
+        <div class="card-footer">
+          <span class="score">42/50</span>
+          <a href="riff-20/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">6</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Sir Blubbert's Weather Theatre</div>
+        <div class="walrus-name">Sir Blubbert</div>
+        <div class="pitch">A theatrical walrus delivers dramatically absurd North Pole weather reports</div>
+        <div class="score-bar"><div class="score-fill" style="width: 82%"></div></div>
+        <div class="card-footer">
+          <span class="score">41/50</span>
+          <a href="riff-16/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">7</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Bartholomew's Wish Tribunal</div>
+        <div class="walrus-name">Bartholomew</div>
+        <div class="pitch">Submit your Christmas wishes to be judged by a pompous Victorian walrus</div>
+        <div class="score-bar"><div class="score-fill" style="width: 80%"></div></div>
+        <div class="card-footer">
+          <span class="score">40/50</span>
+          <a href="riff-17/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">8</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Waldo's Nice List Ledger</div>
+        <div class="walrus-name">Waldo Whiskersworth III</div>
+        <div class="pitch">Track your holiday good deeds and earn walrus approval</div>
+        <div class="score-bar"><div class="score-fill" style="width: 78%"></div></div>
+        <div class="card-footer">
+          <span class="score">39/50</span>
+          <a href="riff-11/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">9</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Winslow's Cosmic Fish Fortune</div>
+        <div class="walrus-name">Winslow</div>
+        <div class="pitch">Feed a philosophical walrus cosmic fish and receive absurdist holiday wisdom</div>
+        <div class="score-bar"><div class="score-fill" style="width: 76%"></div></div>
+        <div class="card-footer">
+          <span class="score">38/50</span>
+          <a href="riff-13/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">10</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Waldo's Marketplace</div>
+        <div class="walrus-name">Waldo the Wonderful Walrus</div>
+        <div class="pitch">Buy and sell festive treasures with a jolly Arctic gift merchant</div>
+        <div class="score-bar"><div class="score-fill" style="width: 74%"></div></div>
+        <div class="card-footer">
+          <span class="score">37/50</span>
+          <a href="riff-6/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">11</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Wally's Winter Wonderland</div>
+        <div class="walrus-name">Wally McTuskington</div>
+        <div class="pitch">Complete festive tasks and unlock holiday achievements</div>
+        <div class="score-bar"><div class="score-fill" style="width: 72%"></div></div>
+        <div class="card-footer">
+          <span class="score">36/50</span>
+          <a href="riff-3/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">12</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Professor Wally's Workshop</div>
+        <div class="walrus-name">Professor Wally Whiskers</div>
+        <div class="pitch">Learn festive facts with your jolly walrus tutor</div>
+        <div class="score-bar"><div class="score-fill" style="width: 70%"></div></div>
+        <div class="card-footer">
+          <span class="score">35/50</span>
+          <a href="riff-7/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">13</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Bartholomew's Arctic Oracle</div>
+        <div class="walrus-name">Bartholomew Tuskington III</div>
+        <div class="pitch">Seek mystical Christmas wisdom from a philosophical walrus sage</div>
+        <div class="score-bar"><div class="score-fill" style="width: 68%"></div></div>
+        <div class="card-footer">
+          <span class="score">34/50</span>
+          <a href="riff-18/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">14</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Blubbert's Holiday Oracle</div>
+        <div class="walrus-name">Blubbert Kringle</div>
+        <div class="pitch">Seek festive wisdom from a mystical Christmas walrus who sees through the northern lights</div>
+        <div class="score-bar"><div class="score-fill" style="width: 68%"></div></div>
+        <div class="card-footer">
+          <span class="score">34/50</span>
+          <a href="riff-14/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">15</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Wendell's Year-End Task Hub</div>
+        <div class="walrus-name">Wendell (with Monocle)</div>
+        <div class="pitch">Enterprise task management with holiday cheer</div>
+        <div class="score-bar"><div class="score-fill" style="width: 66%"></div></div>
+        <div class="card-footer">
+          <span class="score">33/50</span>
+          <a href="riff-4/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">16</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Walrus Wishes</div>
+        <div class="walrus-name">Wally Claus & Friends</div>
+        <div class="pitch">Share holiday cheer through your festive walrus persona in a cozy Arctic community</div>
+        <div class="score-bar"><div class="score-fill" style="width: 64%"></div></div>
+        <div class="card-footer">
+          <span class="score">32/50</span>
+          <a href="riff-2/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">17</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Waldo's Wisdom Workshop</div>
+        <div class="walrus-name">Waldo</div>
+        <div class="pitch">Get absurdist holiday wisdom from a mystical Arctic walrus oracle</div>
+        <div class="score-bar"><div class="score-fill" style="width: 64%"></div></div>
+        <div class="card-footer">
+          <span class="score">32/50</span>
+          <a href="riff-19/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">18</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Blubbert's Wisdom Grotto</div>
+        <div class="walrus-name">Blubbert</div>
+        <div class="pitch">Receive absurdist philosophical guidance from a monocled Arctic sage</div>
+        <div class="score-bar"><div class="score-fill" style="width: 62%"></div></div>
+        <div class="card-footer">
+          <span class="score">31/50</span>
+          <a href="riff-15/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">19</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Winslow's Wish Oracle</div>
+        <div class="walrus-name">Winslow</div>
+        <div class="pitch">Submit wishes and receive cryptic holiday prophecies</div>
+        <div class="score-bar"><div class="score-fill" style="width: 62%"></div></div>
+        <div class="card-footer">
+          <span class="score">31/50</span>
+          <a href="riff-22/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">20</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Wally's Wish Workshop</div>
+        <div class="walrus-name">Wally Whiskers</div>
+        <div class="pitch">Send heartfelt holiday wishes delivered by a festive walrus</div>
+        <div class="score-bar"><div class="score-fill" style="width: 60%"></div></div>
+        <div class="card-footer">
+          <span class="score">30/50</span>
+          <a href="riff-1/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">21</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Wally's Wish Workshop</div>
+        <div class="walrus-name">Wally Whiskersworth</div>
+        <div class="pitch">Track your holiday gift-giving and wishes with a festive walrus friend</div>
+        <div class="score-bar"><div class="score-fill" style="width: 60%"></div></div>
+        <div class="card-footer">
+          <span class="score">30/50</span>
+          <a href="riff-5/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">22</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Wally's Wish Workshop</div>
+        <div class="walrus-name">Wally Whiskers McTusk</div>
+        <div class="pitch">Organize your Christmas wishes with help from the North Pole's jolliest walrus</div>
+        <div class="score-bar"><div class="score-fill" style="width: 58%"></div></div>
+        <div class="card-footer">
+          <span class="score">29/50</span>
+          <a href="riff-8/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">23</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Bartholomew's Arctic Emporium</div>
+        <div class="walrus-name">Bartholomew</div>
+        <div class="pitch">Submit wishes to a distinguished Victorian walrus for impeccable evaluation</div>
+        <div class="score-bar"><div class="score-fill" style="width: 58%"></div></div>
+        <div class="card-footer">
+          <span class="score">29/50</span>
+          <a href="riff-12/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">24</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Bartholomew's Wish Bureau</div>
+        <div class="walrus-name">Bartholomew</div>
+        <div class="pitch">Submit wishes to an eccentric aristocratic walrus for pompous evaluation</div>
+        <div class="score-bar"><div class="score-fill" style="width: 56%"></div></div>
+        <div class="card-footer">
+          <span class="score">28/50</span>
+          <a href="riff-23/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank-badge rank-other">25</div>
+        <div class="walrus-icon">🦭🎅</div>
+        <div class="app-name">Bartholomew's Wish Emporium</div>
+        <div class="walrus-name">Bartholomew</div>
+        <div class="pitch">Submit wishes to an aristocratic walrus who dramatically deliberates verdicts</div>
+        <div class="score-bar"><div class="score-fill" style="width: 56%"></div></div>
+        <div class="card-footer">
+          <span class="score">28/50</span>
+          <a href="riff-24/" class="launch-btn">Launch →</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Generated with Vibes Riff Generator</p>
+      <p style="margin-top: 0.5rem; font-size: 2rem;">🦭🎅❄️🎄✨</p>
+    </footer>
+  </div>
+
+  <script>
+    // Create snowflakes
+    const container = document.getElementById('snowflakes');
+    const flakes = ['❄', '❅', '❆', '✧', '⁂'];
+    for (let i = 0; i < 50; i++) {
+      const snowflake = document.createElement('div');
+      snowflake.className = 'snowflake';
+      snowflake.textContent = flakes[Math.floor(Math.random() * flakes.length)];
+      snowflake.style.left = Math.random() * 100 + '%';
+      snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      snowflake.style.animationDelay = Math.random() * 10 + 's';
+      snowflake.style.fontSize = (Math.random() * 1.5 + 0.5) + 'rem';
+      container.appendChild(snowflake);
+    }
+  </script>
+</body>
+</html>
